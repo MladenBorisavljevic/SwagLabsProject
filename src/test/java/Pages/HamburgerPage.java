@@ -5,10 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.List;
-
-public class SidebarPage extends BaseTest {
-    public SidebarPage() {
+public class HamburgerMenu extends BaseTest {
+    public HamburgerMenu() {
         PageFactory.initElements(driver, this);
     }
 
@@ -22,7 +20,7 @@ public class SidebarPage extends BaseTest {
     public WebElement aboutButton;
 
     @FindBy(id = "logout_sidebar_link")
-    public WebElement logutButton;
+    public WebElement logoutButton;
 
     @FindBy(id = "reset_sidebar_link")
     public WebElement resetAppState;
@@ -38,7 +36,7 @@ public class SidebarPage extends BaseTest {
     }
 
     public void clickOnLogout() {
-        logutButton.click();
+        logoutButton.click();
     }
 
     public void clickOnResetAppState() {
