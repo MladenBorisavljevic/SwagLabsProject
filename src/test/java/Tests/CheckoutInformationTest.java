@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class CheckoutFirstStepTest extends BaseTest {
+public class CheckoutInformationTest extends BaseTest {
 
     @BeforeMethod
     public void pageSetUp() {
@@ -13,7 +13,7 @@ public class CheckoutFirstStepTest extends BaseTest {
     }
 
 
-    @Test
+    @Test //(priority = 10)
     public void userCanProceedToOverview() {
         yourInformationPage.inputFirstName("Petar");
         yourInformationPage.inputLastName("Petrovic");
@@ -22,7 +22,7 @@ public class CheckoutFirstStepTest extends BaseTest {
         Assert.assertTrue(overviewPage.finishButton.isDisplayed());
     }
 
-    @Test
+    @Test //(priority = 20)
     public void userCannotProceedWithEmptyFirstName() {
         yourInformationPage.inputFirstName("");
         yourInformationPage.inputLastName("Petrovic");
@@ -31,7 +31,7 @@ public class CheckoutFirstStepTest extends BaseTest {
         Assert.assertTrue(yourInformationPage.errorButton.isDisplayed());
     }
 
-    @Test
+    @Test //(priority = 30)
     public void userCannotProceedWithEmptyLastName() {
         yourInformationPage.inputFirstName("Petar");
         yourInformationPage.inputLastName("");
@@ -40,7 +40,7 @@ public class CheckoutFirstStepTest extends BaseTest {
         Assert.assertTrue(yourInformationPage.errorButton.isDisplayed());
     }
 
-    @Test
+    @Test //(priority = 40)
     public void userCannotProceedWithEmptyPostalCode() {
         yourInformationPage.inputFirstName("Petar");
         yourInformationPage.inputLastName("Petrovic");

@@ -28,6 +28,9 @@ public class YourInformationPage extends BaseTest {
     @FindBy(className = "error-button")
     public WebElement errorButton;
 
+    @FindBy(css = ".cart_cancel_link.btn_secondary")
+    public WebElement cancelButton;
+
     //-------------------------------------------------------------
 
     public void inputFirstName(String firstName) {
@@ -51,6 +54,10 @@ public class YourInformationPage extends BaseTest {
 
     public void clickOnContinue() {
         continueButton.click();
+    }
+
+    public void clickOnCancel() {
+        cancelButton.click();
     }
 
 }

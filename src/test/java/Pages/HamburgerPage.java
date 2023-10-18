@@ -5,13 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class HamburgerMenu extends BaseTest {
-    public HamburgerMenu() {
+public class HamburgerPage extends BaseTest {
+    public HamburgerPage() {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(className = "bm-burger-button")
-    public WebElement hamburgerMenu;
 
     @FindBy(id = "inventory_sidebar_link")
     public WebElement allItemsButton;
@@ -43,9 +41,7 @@ public class HamburgerMenu extends BaseTest {
         resetAppState.click();
     }
 
-    public void clickOnHamburgerMenu() {
-        hamburgerMenu.click();
-    }
+
 
 
 

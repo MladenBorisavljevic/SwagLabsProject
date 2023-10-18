@@ -16,6 +16,8 @@ public class CartPage extends BaseTest {
     @FindBy(css = ".btn_action.checkout_button")
     public WebElement checkoutButton;
 
+
+
     //---------------------------------------------------------
 
     public void clickOnContinueShopping() {
@@ -25,4 +27,5 @@ public class CartPage extends BaseTest {
     public void clickOnCheckout() {
         checkoutButton.click();
     }
+
 }

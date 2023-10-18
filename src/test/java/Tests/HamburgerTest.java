@@ -12,17 +12,17 @@ public class HamburgerTest extends BaseTest {
         driver.navigate().to("https://www.saucedemo.com/v1/inventory.html");
     }
 
-    @Test
+    @Test //(priority = 10)
     public void clickOnItemsShowingProducts () {
-        sidebarPage.clickOnHamburgerMenu();
-        sidebarPage.clickOnAllItems();
-        Assert.assertTrue(profilePage.productsHeading.isDisplayed());
+        productsPage.clickOnHamburgerMenu();
+        hamburgerPage.clickOnAllItems();
+        Assert.assertTrue(productsPage.productsHeading.isDisplayed());
     }
 
-    @Test
+    @Test //(priority = 20)
     public void verifyThatUserCanLogout()  {
-        sidebarPage.clickOnHamburgerMenu();
-        sidebarPage.clickOnLogout();
+        productsPage.clickOnHamburgerMenu();
+        hamburgerPage.clickOnLogout();
         Assert.assertTrue(loginPage.loginButton.isDisplayed());
         Assert.assertTrue(loginPage.usernameField.isDisplayed());
         Assert.assertTrue(loginPage.passwordField.isDisplayed());

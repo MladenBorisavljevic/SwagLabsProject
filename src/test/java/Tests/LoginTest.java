@@ -13,68 +13,67 @@ public class LoginTest extends BaseTest {
         driver.navigate().to("https://www.saucedemo.com/v1/index.html");
     }
 
-    @Test
-    public void usernameFieldIsVisible() {
-        Assert.assertTrue(loginPage.usernameField.isDisplayed());
+    @Test //(priority = 10)
+    public void elementsAreDisplayed() {
+        Assert.assertTrue(loginPage.elementIsDisplayed(loginPage.usernameField));
+        Assert.assertTrue(loginPage.elementIsDisplayed(loginPage.passwordField));
+        Assert.assertTrue(loginPage.elementIsDisplayed(loginPage.loginButton));
     }
 
-    @Test
-    public void passwordFieldIsVisible() {
-        Assert.assertTrue(loginPage.passwordField.isDisplayed());
-    }
-
-   @Test
-   public void logoutButtonIsVisible() {
-        Assert.assertTrue(loginPage.loginButton.isDisplayed());
-    }
-
-    @Test
+    @Test //(priority = 20)
     public void userCanLoginWithValidCredentials() {
-        String validUsername = excelReader.getStringData("Login", 1, 0);
-        String validPassword = excelReader.getStringData("Login", 1, 1);
-
-        loginPage.inputUsername(validUsername);
-        loginPage.inputPassword(validPassword);
-        loginPage.clickOnLoginButton();
-        Assert.assertTrue(profilePage.productsHeading.isDisplayed());
-        Assert.assertEquals(profilePage.getProductsHeadingText(), "Products");
+        loginOnAccount();
+        Assert.assertEquals(driver.getCurrentUrl(), productsPage.productsURL);
+        Assert.assertTrue(productsPage.productsHeading.isDisplayed());
+        Assert.assertEquals(productsPage.getProductsHeadingText(), "Products");
     }
 
-    @Test
-    public void userCannotLoginWithInvalidUsername() {
+    @Test //(priority = 30)
+    public void userCannotLoginWithInvalidUsername() throws InterruptedException {
         loginPage.inputUsername(excelReader.getStringData("Login" , 1, 2));
         loginPage.inputPassword(excelReader.getStringData("Login", 1, 1));
         loginPage.clickOnLoginButton();
+        Thread.sleep(2000);
+        Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/v1/index.html");
         Assert.assertTrue(loginPage.loginButton.isDisplayed());
         Assert.assertTrue(loginPage.usernameField.isDisplayed());
         Assert.assertTrue(loginPage.passwordField.isDisplayed());
+        Assert.assertTrue(loginPage.errorMessage.isDisplayed());
     }
 
-    @Test
-    public void userCannotLoginWithInvalidPassword() {
+    @Test //(priority = 40)
+    public void userCannotLoginWithInvalidPassword() throws InterruptedException {
         loginPage.inputUsername(excelReader.getStringData("Login", 1, 0));
         loginPage.inputPassword(excelReader.getStringData("Login", 2, 3));
         loginPage.clickOnLoginButton();
+        Thread.sleep(2000);
+        Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/v1/index.html");
         Assert.assertTrue(loginPage.loginButton.isDisplayed());
         Assert.assertTrue(loginPage.usernameField.isDisplayed());
         Assert.assertTrue(loginPage.passwordField.isDisplayed());
+        Assert.assertTrue(loginPage.errorMessage.isDisplayed());
     }
 
-    @Test
-    public void userCannotLoginWithBothInvalidCredentials () {
+    @Test //(priority = 50)
+    public void userCannotLoginWithBothInvalidCredentials () throws InterruptedException {
         loginPage.inputUsername(excelReader.getStringData("Login", 2, 3));
         loginPage.inputPassword(excelReader.getStringData("Login", 3, 3));
         loginPage.clickOnLoginButton();
+        Thread.sleep(2000);
+        Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/v1/index.html");
         Assert.assertTrue(loginPage.loginButton.isDisplayed());
         Assert.assertTrue(loginPage.usernameField.isDisplayed());
         Assert.assertTrue(loginPage.passwordField.isDisplayed());
+        Assert.assertTrue(loginPage.errorMessage.isDisplayed());
     }
 
-    @Test
-    public void verifyThatUserCanLogout()  {
-        loginOnProfilePage();
-        sidebarPage.clickOnHamburgerMenu();
-        sidebarPage.clickOnLogout();
+    @Test //(priority = 60)
+    public void verifyThatUserCanLogout() throws InterruptedException {
+        loginOnAccount();
+        productsPage.clickOnHamburgerMenu();
+        hamburgerPage.clickOnLogout();
+        Thread.sleep(2000);
+        Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/v1/index.html");
         Assert.assertTrue(loginPage.loginButton.isDisplayed());
         Assert.assertTrue(loginPage.usernameField.isDisplayed());
         Assert.assertTrue(loginPage.passwordField.isDisplayed());

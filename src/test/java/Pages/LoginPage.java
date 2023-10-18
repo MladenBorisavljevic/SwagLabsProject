@@ -20,7 +20,7 @@ public class LoginPage extends BaseTest {
     public WebElement loginButton;
 
     @FindBy(className = "error-button")
-    public WebElement errorButton;
+    public WebElement errorMessage;
 
 
 //-----------------------------------------------------
@@ -37,8 +37,8 @@ public class LoginPage extends BaseTest {
         loginButton.click();
     }
 
-    public String getErrorText() {
-        return errorButton.getText();
+    public String getErrorMessage() {
+        return errorMessage.getText();
     }
 
 }
