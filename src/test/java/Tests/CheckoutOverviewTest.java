@@ -12,7 +12,7 @@ public class CheckoutOverviewTest extends BaseTest {
         driver.navigate().to("https://www.saucedemo.com/v1/checkout-step-two.html");
     }
 
-    @Test //(priority = 10)
+    @Test (priority = 10)
     public void userCanCompleteTheOrder() {
         overviewPage.clickOnFinish();
         Assert.assertTrue(orderCreatedPage.orderThanks.isDisplayed());

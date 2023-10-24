@@ -13,14 +13,14 @@ public class LoginTest extends BaseTest {
         driver.navigate().to("https://www.saucedemo.com/v1/index.html");
     }
 
-    @Test //(priority = 10)
+    @Test (priority = 10)
     public void elementsAreDisplayed() {
         Assert.assertTrue(loginPage.elementIsDisplayed(loginPage.usernameField));
         Assert.assertTrue(loginPage.elementIsDisplayed(loginPage.passwordField));
         Assert.assertTrue(loginPage.elementIsDisplayed(loginPage.loginButton));
     }
 
-    @Test //(priority = 20)
+    @Test (priority = 20)
     public void userCanLoginWithValidCredentials() {
         loginOnAccount();
         Assert.assertEquals(driver.getCurrentUrl(), productsPage.productsURL);
@@ -28,12 +28,11 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(productsPage.getProductsHeadingText(), "Products");
     }
 
-    @Test //(priority = 30)
+    @Test (priority = 30)
     public void userCannotLoginWithInvalidUsername() throws InterruptedException {
         loginPage.inputUsername(excelReader.getStringData("Login" , 1, 2));
         loginPage.inputPassword(excelReader.getStringData("Login", 1, 1));
         loginPage.clickOnLoginButton();
-        Thread.sleep(2000);
         Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/v1/index.html");
         Assert.assertTrue(loginPage.loginButton.isDisplayed());
         Assert.assertTrue(loginPage.usernameField.isDisplayed());
@@ -41,12 +40,11 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(loginPage.errorMessage.isDisplayed());
     }
 
-    @Test //(priority = 40)
+    @Test (priority = 40)
     public void userCannotLoginWithInvalidPassword() throws InterruptedException {
         loginPage.inputUsername(excelReader.getStringData("Login", 1, 0));
         loginPage.inputPassword(excelReader.getStringData("Login", 2, 3));
         loginPage.clickOnLoginButton();
-        Thread.sleep(2000);
         Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/v1/index.html");
         Assert.assertTrue(loginPage.loginButton.isDisplayed());
         Assert.assertTrue(loginPage.usernameField.isDisplayed());
@@ -54,12 +52,11 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(loginPage.errorMessage.isDisplayed());
     }
 
-    @Test //(priority = 50)
+    @Test (priority = 50)
     public void userCannotLoginWithBothInvalidCredentials () throws InterruptedException {
         loginPage.inputUsername(excelReader.getStringData("Login", 2, 3));
         loginPage.inputPassword(excelReader.getStringData("Login", 3, 3));
         loginPage.clickOnLoginButton();
-        Thread.sleep(2000);
         Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/v1/index.html");
         Assert.assertTrue(loginPage.loginButton.isDisplayed());
         Assert.assertTrue(loginPage.usernameField.isDisplayed());
@@ -67,12 +64,11 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(loginPage.errorMessage.isDisplayed());
     }
 
-    @Test //(priority = 60)
+    @Test (priority = 60)
     public void verifyThatUserCanLogout() throws InterruptedException {
         loginOnAccount();
         productsPage.clickOnHamburgerMenu();
         hamburgerPage.clickOnLogout();
-        Thread.sleep(2000);
         Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/v1/index.html");
         Assert.assertTrue(loginPage.loginButton.isDisplayed());
         Assert.assertTrue(loginPage.usernameField.isDisplayed());

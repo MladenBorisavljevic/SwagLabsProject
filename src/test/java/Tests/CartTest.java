@@ -12,12 +12,12 @@ public class CartTest extends BaseTest {
         driver.navigate().to("https://www.saucedemo.com/v1/cart.html");
     }
 
-    @Test //(priority = 10)
+    @Test (priority = 10)
     public void cartIsEmpty() {
         productsPage.clickOnCartIcon();
     }
 
-    @Test //(priority = 20)
+    @Test (priority = 20)
     public void clickingOnCheckoutRedirectingToYourInformationPage() {
         cartPage.clickOnCheckout();
         Assert.assertTrue(yourInformationPage.firstNameField.isDisplayed());
@@ -26,7 +26,7 @@ public class CartTest extends BaseTest {
         Assert.assertEquals(yourInformationPage.getHeadingText(), "Checkout: Your Information");
     }
 
-    @Test //(priority = 30)
+    @Test (priority = 30)
     public void clickingOnContinueShoppingRedirectsToProducts() {
         cartPage.clickOnContinueShopping();
         Assert.assertTrue(productsPage.productsHeading.isDisplayed());

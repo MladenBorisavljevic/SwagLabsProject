@@ -14,14 +14,14 @@ public class ProductsTest extends BaseTest {
     }
 
 
-    @Test//(priority = 10)
+    @Test(priority = 10)
     public void userCanAddProduct() {
         productsPage.clickOnAddToCart(0);
         Assert.assertEquals(productsPage.getCartIconNumber(), "1");
         productsPage.clickOnRemoveButton(0);
     }
 
-    @Test//(priority = 20)
+    @Test(priority = 20)
     public void userCanRemoveProduct() {
         productsPage.clickOnAddToCart(1);
         productsPage.clickOnRemoveButton(0);
@@ -38,7 +38,7 @@ public class ProductsTest extends BaseTest {
         productsPage.clickOnRemoveButton(0);
     }
 
-    @Test
+    @Test (priority = 40)
     public void verifySortButtonFunctionalityByTitles() {
         Select objSelect = new Select(productsPage.productsSortButton);
         objSelect.selectByVisibleText("Name (A to Z)");

@@ -13,7 +13,7 @@ public class CheckoutInformationTest extends BaseTest {
     }
 
 
-    @Test //(priority = 10)
+    @Test (priority = 10)
     public void userCanProceedToOverview() {
         yourInformationPage.inputFirstName("Petar");
         yourInformationPage.inputLastName("Petrovic");
@@ -22,7 +22,7 @@ public class CheckoutInformationTest extends BaseTest {
         Assert.assertTrue(overviewPage.finishButton.isDisplayed());
     }
 
-    @Test //(priority = 20)
+    @Test (priority = 20)
     public void userCannotProceedWithEmptyFirstName() {
         yourInformationPage.inputFirstName("");
         yourInformationPage.inputLastName("Petrovic");
@@ -31,7 +31,7 @@ public class CheckoutInformationTest extends BaseTest {
         Assert.assertTrue(yourInformationPage.errorButton.isDisplayed());
     }
 
-    @Test //(priority = 30)
+    @Test (priority = 30)
     public void userCannotProceedWithEmptyLastName() {
         yourInformationPage.inputFirstName("Petar");
         yourInformationPage.inputLastName("");
@@ -40,7 +40,7 @@ public class CheckoutInformationTest extends BaseTest {
         Assert.assertTrue(yourInformationPage.errorButton.isDisplayed());
     }
 
-    @Test //(priority = 40)
+    @Test (priority = 40)
     public void userCannotProceedWithEmptyPostalCode() {
         yourInformationPage.inputFirstName("Petar");
         yourInformationPage.inputLastName("Petrovic");
